@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cfl.dao.FileDAO">
+    <resultMap id="filesMap" type="com.cfl.vo.FileVo"></resultMap>
+    <select id="getById" resultMap="filesMap" parameterType="long">
+        select * from files where id = #{id}
+    </select>
+    <delete id="removeById" parameterType="long">
+        delete from files where id = #{id}
+    </delete>
+    <select id="listPage" resultMap="filesMap">
+        select * from files  order by create_time desc limit #{pageNo},#{pageSize}
+    </select>
+    <select id="listAll" resultMap="filesMap">
+        select * from files 
+    </select>
+    <select id="count" resultType="java.lang.Long">
+        select count(*) from files  
+    </select>
+    <select id=""></select>
+    <insert id="save" parameterType="fileVo">
+        insert into files (filePath, create_time) values ( #{filePath},#{createTime})
+    </insert>
+</mapper>
